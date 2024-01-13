@@ -1,0 +1,11 @@
+version: "3"
+services:
+  ttb-dev:
+    image: node:20
+    container_name: ttb-dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - D:\git:/git
+    stdin_open: true
+    tty: true

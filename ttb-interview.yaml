@@ -1,0 +1,15 @@
+version: "3"
+services:
+  ttb-interview:
+    image: wavekasipat/ttb-interview:20240112-002939
+    container_name: ttb-interview
+    ports:
+      - "3000:3000"
+    volumes:
+      - D:\git\ttb-interview\keys:/app/keys
+      - D:\git\ttb-interview\prisma\dev.db:/app/prisma/dev.db
+    environment:
+      DATABASE_URL: "file:./dev.db"
+      JWT_SECRET: eCSpEf46RF64eWLKv3qA29Lq3dyYUNpQ
+      AES_KEY: E5b3L2jd5d84Oo0P4Eyr0N86za333swR
+      AES_IV: 8df94b22ef56b43299d08c5dd57dcf08

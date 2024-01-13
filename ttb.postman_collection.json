@@ -1,0 +1,252 @@
+{
+	"info": {
+		"_postman_id": "1e8ab917-b69f-4da0-8acc-96abb9f6d570",
+		"name": "ttb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "339505"
+	},
+	"item": [
+		{
+			"name": "/auth",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"client_id\":\"8d757981-27b4-4507-8ef4-d63faa838468\",\r\n    \"client_secret\":\"M82ZJg29ugstoe29Cbc1ppimS1sm7wGK\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/customer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "facial",
+							"type": "file",
+							"src": "/C:/Users/kasip/OneDrive/รูปภาพ/d9c2b6b32207552a7eb4baf225c6b00e.png"
+						},
+						{
+							"key": "name",
+							"value": "กษิภัท",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "โชติกรวรกุล",
+							"type": "text"
+						},
+						{
+							"key": "citizen_id",
+							"value": "1100500982420",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/customer/[cid]",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/customer/1100500982420",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"customer",
+						"1100500982420"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/customer/[cid]/facial-image",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/customer/1100500982420/facial-image",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"customer",
+						"1100500982420",
+						"facial-image"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/e-sign/sign",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "document",
+							"type": "file",
+							"src": "/D:/git/resume/kasipat_resume.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/e-sign/sign",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"e-sign",
+						"sign"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/e-sign/verify",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "document",
+							"type": "file",
+							"src": "/D:/git/resume/kasipat_resume.pdf"
+						},
+						{
+							"key": "signature",
+							"value": "Bdx34ix0f8K0x1a8i/86ZoTOpyFL50ZgTltIsx6xVCggj8qJTLX9qheV12gTlHI7/ZtRABQJEeurSCxswxSMc0JiKcPRyAShMnF89L7didZOSM5bEwUOOWGVj8ATYfgRlb+Uqy3mkDaRAM/FLq5ZbrG5OnRfuxGAm6GMKUdK6ZxhJqqIOH6QK3iVYcVRmO9J8K5KzGNGkFrmuY3EB9QscBLUNTXbU/UwsOBSB99s6IBnDjD1K6MwbvoiVQL/YsVXLiGk0ILuieeMd/FNxEy3FKLt+T579wiJydMuSO4/zbij6gQFcL2KB5k8vDxT1gTWrXM/fq0zK94LvLjr2rjBBA==",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/e-sign/verify",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"e-sign",
+						"verify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/face-similarity",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "facial1",
+							"type": "file",
+							"src": "/C:/Users/kasip/OneDrive/รูปภาพ/test/491045.jpg"
+						},
+						{
+							"key": "facial2",
+							"type": "file",
+							"src": "/C:/Users/kasip/OneDrive/รูปภาพ/test/491046.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/face-similarity",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"face-similarity"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhkNzU3OTgxLTI3YjQtNDUwNy04ZWY0LWQ2M2ZhYTgzODQ2OCIsImlhdCI6MTcwNDgxNDUwNiwiZXhwIjoxNzA0ODE4MTA2fQ.M6v-CYhUjjcF8pB5dEoWLRuZSg9HDbHEs-q1f3OsoKI",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

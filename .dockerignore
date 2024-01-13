@@ -1,0 +1,5 @@
+.env
+diagrams
+keys
+node_modules
+prisma/dev.db
