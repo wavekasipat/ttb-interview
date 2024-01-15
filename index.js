@@ -3,6 +3,8 @@ require("express-async-errors");
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 require("dotenv").config();
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.js");
 
 const app = express();
 const port = 3000;
@@ -14,19 +16,21 @@ app.use(require("./lib/validateJwt"));
 app.use(bodyParser.json());
 
 // sample get route
-app.get("/", async (req, res) => {
-    return res.send({
-        message: "Hello World!",
-    });
-});
+// app.get("/", async (req, res) => {
+//     return res.send({
+//         message: "Hello World!",
+//     });
+// });
 
-// sample post route
-app.post("/", (req, res) => {
-    console.log(req.body);
-    return res.send({
-        message: "Hello World!",
-    });
-});
+// // sample post route
+// app.post("/", (req, res) => {
+//     console.log(req.body);
+//     return res.send({
+//         message: "Hello World!",
+//     });
+// });
+
+app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // sample error route
 app.get("/sample-error", async (req, res) => {

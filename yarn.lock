@@ -1581,6 +1581,18 @@ supports-color@^5.5.0:
   dependencies:
     has-flag "^3.0.0"
 
+swagger-ui-dist@>=5.0.0:
+  version "5.11.0"
+  resolved "https://registry.yarnpkg.com/swagger-ui-dist/-/swagger-ui-dist-5.11.0.tgz#9bcfd75278b1fa9c36fe52f206f8fc611470547c"
+  integrity sha512-j0PIATqQSEFGOLmiJOJZj1X1Jt6bFIur3JpY7+ghliUnfZs0fpWDdHEkn9q7QUlBtKbkn6TepvSxTqnE8l3s0A==
+
+swagger-ui-express@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/swagger-ui-express/-/swagger-ui-express-5.0.0.tgz#7a00a18dd909574cb0d628574a299b9ba53d4d49"
+  integrity sha512-tsU9tODVvhyfkNSvf03E6FAk+z+5cU3lXAzMy6Pv4av2Gt2xA0++fogwC4qo19XuFf6hdxevPuVCSKFuMHJhFA==
+  dependencies:
+    swagger-ui-dist ">=5.0.0"
+
 tar@^4.4.2, tar@^4.4.6:
   version "4.4.19"
   resolved "https://registry.yarnpkg.com/tar/-/tar-4.4.19.tgz#2e4d7263df26f2b914dee10c825ab132123742f3"
