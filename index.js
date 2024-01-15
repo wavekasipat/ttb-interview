@@ -15,27 +15,7 @@ app.use(require("./lib/validateJwt"));
 // parse application/json
 app.use(bodyParser.json());
 
-// sample get route
-// app.get("/", async (req, res) => {
-//     return res.send({
-//         message: "Hello World!",
-//     });
-// });
-
-// // sample post route
-// app.post("/", (req, res) => {
-//     console.log(req.body);
-//     return res.send({
-//         message: "Hello World!",
-//     });
-// });
-
-app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
-// sample error route
-app.get("/sample-error", async (req, res) => {
-    throw new Error("Sample error");
-});
+app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.post("/auth", require("./routes/auth/post"));
 
@@ -53,14 +33,19 @@ app.post(
     require("./routes/e-sign/verify/post"),
 );
 
-app.post(
-    "/face-similarity",
-    fileUpload({
-        useTempFiles: true,
-        tempFileDir: "/tmp/",
-    }),
-    require("./routes/face-similarity/post"),
-);
+// app.post(
+//     "/face-similarity",
+//     fileUpload({
+//         useTempFiles: true,
+//         tempFileDir: "/tmp/",
+//     }),
+//     require("./routes/face-similarity/post"),
+// );
+
+// sample error route
+app.get("/sample-error", async (req, res) => {
+    throw new Error("Sample error");
+});
 
 // error handler
 app.use(require("./lib/errorHandler"));
