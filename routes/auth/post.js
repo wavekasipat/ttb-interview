@@ -1,11 +1,18 @@
 const jwt = require("jsonwebtoken");
 const jwtSecret = process.env.JWT_SECRET || "secret";
+const jwtExpire = process.env.JWT_EXPIRE || "1h";
 const { PrismaClient } = require("@prisma/client");
+const crypto = require("crypto");
 
 const main = async (req, res) => {
     const prisma = new PrismaClient();
 
     const { client_id, client_secret } = req.body;
+
+    // hash secret
+    const hash = crypto.createHash("sha512");
+    hash.update(client_secret);
+    const hashed_secret = hash.digest("hex");
 
     const api_client = await prisma.api_client.findUnique({
         where: {
@@ -19,7 +26,7 @@ const main = async (req, res) => {
         });
     }
 
-    if (api_client.secret !== client_secret) {
+    if (api_client.secret !== hashed_secret) {
         return res.status(401).send({
             error: "Invalid client secret",
         });
@@ -31,7 +38,7 @@ const main = async (req, res) => {
             id: client_id,
         },
         jwtSecret,
-        { expiresIn: "1h" },
+        { expiresIn: jwtExpire },
     );
 
     return res.send({

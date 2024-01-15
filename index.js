@@ -18,6 +18,7 @@ app.use(bodyParser.json());
 app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.post("/auth", require("./routes/auth/post"));
+app.post("/auth/new-client", require("./routes/auth/new-client/post"));
 
 app.post("/customer", fileUpload(), require("./routes/customer/post"));
 app.get("/customer/:cid", require("./routes/customer/[cid]/get"));

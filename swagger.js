@@ -32,11 +32,11 @@ const swaggerDocument = {
                                 client_id: {
                                     type: "string",
                                     example:
-                                        "8d757981-27b4-4507-8ef4-d63faa838468",
+                                        "2855e54d-6031-4b52-a5f3-b7f888ff7267",
                                 },
                                 client_secret: {
                                     type: "string",
-                                    example: "M82ZJg29ugstoe29Cbc1ppimS1sm7wGK",
+                                    example: "hzxiwa2biuc6x9588u1r0e",
                                 },
                             },
                         },
@@ -49,6 +49,35 @@ const swaggerDocument = {
                             type: "object",
                             properties: {
                                 token: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+        "/auth/new-client": {
+            post: {
+                tags: ["auth"],
+                summary: "Create New Client",
+                description: "Create New Client",
+                operationId: "createNewClient",
+                security: [
+                    {
+                        Bearer: [],
+                    },
+                ],
+                responses: {
+                    200: {
+                        description: "Create New Client",
+                        schema: {
+                            type: "object",
+                            properties: {
+                                client_id: {
+                                    type: "string",
+                                },
+                                client_secret: {
                                     type: "string",
                                 },
                             },
@@ -203,7 +232,7 @@ const swaggerDocument = {
                 ],
                 parameters: [
                     {
-                        name: "file",
+                        name: "document",
                         in: "formData",
                         description: "File",
                         required: true,
@@ -239,7 +268,7 @@ const swaggerDocument = {
                 ],
                 parameters: [
                     {
-                        name: "file",
+                        name: "document",
                         in: "formData",
                         description: "File",
                         required: true,
@@ -282,14 +311,14 @@ const swaggerDocument = {
                 ],
                 parameters: [
                     {
-                        name: "file1",
+                        name: "facial1",
                         in: "formData",
                         description: "File 1",
                         required: true,
                         type: "file",
                     },
                     {
-                        name: "file2",
+                        name: "facial2",
                         in: "formData",
                         description: "File 2",
                         required: true,

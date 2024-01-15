@@ -10,11 +10,11 @@ const main = async (req, res) => {
     // hash citizen id with sha512
     const hash = crypto.createHash("sha512");
     hash.update(cid);
-    const encryptedCitizenId = hash.digest("hex");
+    const hashedCitizenId = hash.digest("hex");
 
     const customer = await prisma.customer.findUnique({
         where: {
-            citizen_id: encryptedCitizenId,
+            citizen_id: hashedCitizenId,
         },
     });
 

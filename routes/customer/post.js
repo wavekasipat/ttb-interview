@@ -24,7 +24,7 @@ const main = async (req, res) => {
     // hash citizen id with sha512
     const hash = crypto.createHash("sha512");
     hash.update(citizen_id);
-    const encryptedCitizenId = hash.digest("hex");
+    const hashedCitizenId = hash.digest("hex");
 
     // encrypt all
     const encryptedName = encryptAES(name);
@@ -34,7 +34,7 @@ const main = async (req, res) => {
     // check if customer already exists
     const customer = await prisma.customer.findUnique({
         where: {
-            citizen_id: encryptedCitizenId,
+            citizen_id: hashedCitizenId,
         },
     });
 
@@ -56,7 +56,7 @@ const main = async (req, res) => {
             data: {
                 name: encryptedName,
                 surname: encryptedSurname,
-                citizen_id: encryptedCitizenId,
+                citizen_id: hashedCitizenId,
                 facial_image: encryptedFacial,
             },
         });
