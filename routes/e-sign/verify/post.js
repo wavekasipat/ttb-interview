@@ -26,12 +26,6 @@ const main = async (req, res) => {
 
     const verified = verifier.verify(public_key, signature, "base64");
 
-    if (!verified) {
-        return res.status(400).send({
-            error: "Invalid signature",
-        });
-    }
-
     return res.send({
         verified,
     });

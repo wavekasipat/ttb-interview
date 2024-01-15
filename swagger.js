@@ -27,7 +27,18 @@ const swaggerDocument = {
                         description: "Login",
                         required: true,
                         schema: {
-                            $ref: "#/definitions/LoginRequest",
+                            type: "object",
+                            properties: {
+                                client_id: {
+                                    type: "string",
+                                    example:
+                                        "8d757981-27b4-4507-8ef4-d63faa838468",
+                                },
+                                client_secret: {
+                                    type: "string",
+                                    example: "M82ZJg29ugstoe29Cbc1ppimS1sm7wGK",
+                                },
+                            },
                         },
                     },
                 ],
@@ -35,7 +46,12 @@ const swaggerDocument = {
                     200: {
                         description: "Login",
                         schema: {
-                            $ref: "#/definitions/LoginResponse",
+                            type: "object",
+                            properties: {
+                                token: {
+                                    type: "string",
+                                },
+                            },
                         },
                     },
                 },
@@ -87,7 +103,12 @@ const swaggerDocument = {
                     200: {
                         description: "Create Customer",
                         schema: {
-                            $ref: "#/definitions/CreateCustomerResponse",
+                            type: "object",
+                            properties: {
+                                status: {
+                                    type: "string",
+                                },
+                            },
                         },
                     },
                 },
@@ -117,7 +138,21 @@ const swaggerDocument = {
                     200: {
                         description: "Get Customer",
                         schema: {
-                            $ref: "#/definitions/GetCustomerResponse",
+                            type: "object",
+                            properties: {
+                                name: {
+                                    type: "string",
+                                },
+                                surname: {
+                                    type: "string",
+                                },
+                                citizen_id: {
+                                    type: "string",
+                                },
+                                facial_image: {
+                                    type: "string",
+                                },
+                            },
                         },
                     },
                 },
@@ -154,51 +189,141 @@ const swaggerDocument = {
                 },
             },
         },
-    },
-    definitions: {
-        LoginRequest: {
-            type: "object",
-            properties: {
-                client_id: {
-                    type: "string",
-                    example: "8d757981-27b4-4507-8ef4-d63faa838468",
-                },
-                client_secret: {
-                    type: "string",
-                    example: "M82ZJg29ugstoe29Cbc1ppimS1sm7wGK",
+        "/e-sign/sign": {
+            post: {
+                tags: ["e-sign"],
+                summary: "Sign",
+                description: "Sign",
+                operationId: "sign",
+                consumes: ["multipart/form-data"],
+                security: [
+                    {
+                        Bearer: [],
+                    },
+                ],
+                parameters: [
+                    {
+                        name: "file",
+                        in: "formData",
+                        description: "File",
+                        required: true,
+                        type: "file",
+                    },
+                ],
+                responses: {
+                    200: {
+                        description: "Sign",
+                        schema: {
+                            type: "object",
+                            properties: {
+                                signature: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                    },
                 },
             },
         },
-        LoginResponse: {
-            type: "object",
-            properties: {
-                token: {
-                    type: "string",
+        "/e-sign/verify": {
+            post: {
+                tags: ["e-sign"],
+                summary: "Verify",
+                description: "Verify",
+                operationId: "verify",
+                consumes: ["multipart/form-data"],
+                security: [
+                    {
+                        Bearer: [],
+                    },
+                ],
+                parameters: [
+                    {
+                        name: "file",
+                        in: "formData",
+                        description: "File",
+                        required: true,
+                        type: "file",
+                    },
+                    {
+                        name: "signature",
+                        in: "formData",
+                        description: "Signature",
+                        required: true,
+                        type: "string",
+                    },
+                ],
+                responses: {
+                    200: {
+                        description: "Verify",
+                        schema: {
+                            type: "object",
+                            properties: {
+                                verified: {
+                                    type: "boolean",
+                                },
+                            },
+                        },
+                    },
                 },
             },
         },
-        CreateCustomerResponse: {
-            type: "object",
-            properties: {
-                status: {
-                    type: "string",
+        "/face-similarity": {
+            post: {
+                tags: ["face-similarity"],
+                summary: "Face Similarity",
+                description: "Face Similarity",
+                operationId: "faceSimilarity",
+                consumes: ["multipart/form-data"],
+                security: [
+                    {
+                        Bearer: [],
+                    },
+                ],
+                parameters: [
+                    {
+                        name: "file1",
+                        in: "formData",
+                        description: "File 1",
+                        required: true,
+                        type: "file",
+                    },
+                    {
+                        name: "file2",
+                        in: "formData",
+                        description: "File 2",
+                        required: true,
+                        type: "file",
+                    },
+                ],
+                responses: {
+                    200: {
+                        description: "Face Similarity",
+                        schema: {
+                            type: "object",
+                            properties: {
+                                distance: {
+                                    type: "number",
+                                },
+                                isMatch: {
+                                    type: "boolean",
+                                },
+                            },
+                        },
+                    },
                 },
             },
         },
-        GetCustomerResponse: {
-            type: "object",
-            properties: {
-                name: {
-                    type: "string",
-                },
-                surname: {
-                    type: "string",
-                },
-                citizen_id: {
-                    type: "string",
-                },
-                facial_image: {
-                    type: "string",
+        "/sample-error": {
+            get: {
+                tags: ["sample-error"],
+                summary: "Sample Error",
+                description: "Sample Error",
+                operationId: "sampleError",
+                responses: {
+                    200: {
+                        description: "Sample Error",
+                    },
                 },
             },
         },

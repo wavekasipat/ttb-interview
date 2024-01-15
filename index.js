@@ -33,14 +33,14 @@ app.post(
     require("./routes/e-sign/verify/post"),
 );
 
-// app.post(
-//     "/face-similarity",
-//     fileUpload({
-//         useTempFiles: true,
-//         tempFileDir: "/tmp/",
-//     }),
-//     require("./routes/face-similarity/post"),
-// );
+app.post(
+    "/face-similarity",
+    fileUpload({
+        useTempFiles: true,
+        tempFileDir: "/tmp/",
+    }),
+    require("./routes/face-similarity/post"),
+);
 
 // sample error route
 app.get("/sample-error", async (req, res) => {
